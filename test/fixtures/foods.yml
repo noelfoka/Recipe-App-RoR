@@ -3,11 +3,11 @@
 one:
   name: MyString
   measurement_unit: MyString
-  price: 1.5
   quantity: 1
+  user: one
 
 two:
   name: MyString
   measurement_unit: MyString
-  price: 1.5
   quantity: 1
+  user: two
