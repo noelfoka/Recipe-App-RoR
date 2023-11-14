@@ -12,10 +12,22 @@
         <li class="nav-item">
             <%= link_to 'Recipe', foods_path, class:"nav-link"%>
         </li>
-      </ul>
-      <ul class="d-flex">
-        <button class="btn btn-outline-light">Sign in</button>
-        <button class="btn btn-outline-success">Sign out</button>
+
+        <li class="nav-item">
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
+        </li>
       </ul>
     </div>
   </div>
