@@ -9,12 +9,17 @@
         <li class="nav-item">
             <%= link_to 'Foods', foods_path, class:"nav-link"%>
         </li>
+
         <li class="nav-item">
-            <%= link_to 'Recipe', foods_path, class:"nav-link"%>
           <%= link_to "Public Recipes", recipes_path(@user, @recipes),class: 'nav-link' %>
         </li>
+        
         <li class="nav-item">
             <%= link_to 'Recipe', recipes_path, class:"nav-link"%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Create Recipe", new_recipe_path(current_user), class: "nav-link"%>
         </li>
 
         <li class="nav-item">
