@@ -12,7 +12,7 @@
   <body>
     <%= render 'helpers/navbar'%>
     <div class="container">
-      <% if notice %>
+      <% if notice || alert %>
         <%= render 'helpers/alerts'%>
       <% end %>
       <%= yield %>
