@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :shopping_lists
   resources :foods
   resources :recipes, only: [:index, :show, :new, :create, :destroy] do
     member do

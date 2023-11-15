@@ -1,0 +1,38 @@
+<br/>
+<h1><%= "Shipping List" %></h1>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Food</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @total_items = 0 %>
+    <% @total_value = 0 %>
+    <% @foods.each do |food| %>
+      <% if @recipe_foods.key?(food.id) %>
+        <% calculated_quantity = @recipe_foods[food.id] - food.quantity %>
+        <% if calculated_quantity > 0 %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= calculated_quantity %></td>
+            <td><%= calculated_quantity * food.price %></td>
+            <td></td>
+          </tr>
+          <% @total_items += calculated_quantity %>
+          <% @total_value += calculated_quantity * food.price %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <!-- Total Rows -->
+  </tbody>
+  <thead>
+    <th><%= "Total" %></th>
+    <th><%= @total_items %></th>
+    <th><%= @total_value %></th>
+    <td></td>
+  </thead>
+</table>
+<p style="color: red"><%= "* Total of quantity and price showen in the bottom"%></p>
