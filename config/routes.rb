@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get '/sign_out_user', to: 'users#sign_out_user', as: 'sign_out_user'
   devise_for :users
   resources :foods
   root 'home#index'
