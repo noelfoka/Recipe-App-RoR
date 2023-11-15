@@ -1,27 +1,71 @@
-<div id="<%= dom_id recipe %>">
-  <p>
-    <strong>Name:</strong>
-    <%= recipe.name %>
-  </p>
+<div class="card" style="width: 70rem;">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Recipe: </strong><%= recipe.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Preparation time: </strong><%= recipe.preparation_time %></li>
+    <li class="list-group-item">  <strong>Cooking time: </strong><%= recipe.cooking_time %></li>
+    <li class="list-group-item d-flex"><strong>Public:&nbsp; </strong>
+      <%= form_for @recipe, url: toggle_public_recipe_path(@recipe), method: :post, html: { class: "form-inline" } do |form| %>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="recipe[public]" <%= @recipe.public ? 'checked' : '' %>>
+        </div>
+        <%= form.submit "Hidden Save", id: "submitButton", style: "display: none" %>
+      <% end %>
+      <script>
+        const checkbox = document.getElementById("flexSwitchCheckChecked");
+        const submitButton = document.getElementById("submitButton");
 
-  <p>
-    <strong>Preparation time:</strong>
-    <%= recipe.preparation_time %>
-  </p>
-
-  <p>
-    <strong>Cooking time:</strong>
-    <%= recipe.cooking_time %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= recipe.description %>
-  </p>
-
-  <p>
-    <strong>Public:</strong>
-    <%= recipe.public %>
-  </p>
-
+        checkbox.addEventListener("change", function() {
+          // Trigger form submission when the checkbox is changed
+          if (this.checked === false) {
+            submitButton.click(); // Programmatically click the submit button
+          }
+          if (this.checked === true) {
+            submitButton.click(); // Programmatically click the submit button
+          }
+        window.location.reload()
+        });
+      </script>
+    </li>
+  </ul>
+  <div class="card-body">
+    <p class="card-text"> <strong>Description: </strong><%= recipe.description %></p>
+  </div>
+  <div class="card-body">
+    <%= link_to "Generate Shopping List", new_food_path, class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
+    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(recipe.id), class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
+  </div>
 </div>
+<hr>
+<table class="table table-striped ">
+  <% if @recipe_food.present? %>
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Value</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_food.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price * recipe_food.quantity %></td>
+          <td>
+            <%= link_to "Modify", recipe_path, method: :get, class: 'btn btn-outline-dark btn-sm float-start'%>
+            <%= button_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'btn btn-outline-danger btn-sm float-start'%>
+          </td>
+        </tr>
+      <% end%>
+    </tbody>
+  <% else %>
+    <tbody>
+      <td>
+        <%=  'No foods found please create new food' %>
+      </td>
+    </tbody>
+  <% end %>
+</table>
