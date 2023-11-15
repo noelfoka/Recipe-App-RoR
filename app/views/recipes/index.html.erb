@@ -1,0 +1,5 @@
+<div id="recipes">
+  <% @recipes.each do |recipe| %>
+    <%= render partial: 'recipes/all_recipes', locals: { recipe: recipe } %>
+  <% end %>
+</div>

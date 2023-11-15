@@ -10,6 +10,9 @@
             <%= link_to 'Foods', foods_path, class:"nav-link"%>
         </li>
         <li class="nav-item">
+          <%= link_to "Public Recipes", recipes_path(@user, @recipes),class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
             <%= link_to 'Recipe', recipes_path, class:"nav-link"%>
         </li>
 
