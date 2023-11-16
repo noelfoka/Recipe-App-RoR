@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :recipe_foods, only: [:index, :show, :new, :create, :destroy, :edit, :update]
   end
 
-  root 'home#index'
+  root 'recipes#public_recipes'
 
   get 'general_shopping_list', to: 'home#shopping_list'
   get "up" => "rails/health#show", as: :rails_health_check

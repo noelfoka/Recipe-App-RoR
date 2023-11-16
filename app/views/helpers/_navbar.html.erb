@@ -11,32 +11,32 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to "Public Recipes", recipes_path(@user, @recipes),class: 'nav-link' %>
+          <%= link_to "Public Recipes", root_path,class: 'nav-link' %>
         </li>
-        
-        <li class="nav-item">
+        <% if current_user %>
+            <li class="nav-item">
             <%= link_to 'Recipe', recipes_path, class:"nav-link"%>
-        </li>
+            </li>
 
-        <li class="nav-item">
-          <%= link_to "Create Recipe", new_recipe_path(current_user), class: "nav-link"%>
-        </li>
+            <li class="nav-item">
+              <%= link_to "Create Recipe", new_recipe_path(current_user), class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
+          </li>
 
-        <li class="nav-item">
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link" %>
+          </li>
+        <% else %>
+              <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
+          </li>
 
-        <li class="nav-item">
-          <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link" %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

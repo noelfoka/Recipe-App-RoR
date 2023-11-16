@@ -1,10 +1,10 @@
 class RecipeFoodsController < ApplicationController
-  before_action :set_recipe_food, only: %i[ show edit update destroy ]
+  before_action :set_recipe_food, only: %i[show edit update destroy]
 
-  # load_and_authorize_resource
-  # rescue_from CanCan::AccessDenied do |_exception|
-  #   redirect_to root_path, notice: 'Access denied'
-  # end
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Access denied'
+  end
 
   def new
     @recipe = Recipe.find(params[:recipe_id])
@@ -59,6 +59,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   private
+
   def set_recipe_food
     @recipe_food = RecipeFood.find(params[:id])
   end

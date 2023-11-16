@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
-  # load_and_authorize_resource
-  # rescue_from CanCan::AccessDenied do |_exception|
-  #   redirect_to root_path, notice: 'Access denied'
-  # end
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Access denied'
+  end
   before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
