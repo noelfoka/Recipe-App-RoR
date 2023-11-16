@@ -1,0 +1,34 @@
+<div class="users-container">
+
+<div class="public-recipe-container">
+<h1>Public Recipes</h1>
+  <% @recipes.each do |recipe| %>
+    <% unless recipe.public == false %>
+
+    <div class="public-recipe-card card">
+    <div class="row p-3" style="width:100%;">
+    <div class="col-md-6">
+      <section>
+        <%= link_to  recipe_path(recipe) do %>
+        <h5><strong></strong><%= recipe.name %></h5>
+        <% end %>
+        <p class="user-name">By: <%= recipe.user.name %></p>
+      </section>
+      </div>
+      <div class="col-md-6">
+      <section>
+       
+          <p class="user-price-food">Total food items: <%= recipe.recipe_foods.length %></p>
+          <% total_price = 0 %>
+          <% recipe.recipe_foods.each do |ingredient| %>
+            <% total_price += ingredient.quantity * ingredient.food.price %>
+          <% end %>
+          <p class="user-price-food">Total price: $ <%= total_price %></p>
+        </section>
+        </div>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+  </div>
