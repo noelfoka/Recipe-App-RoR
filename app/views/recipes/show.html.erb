@@ -1,4 +1,4 @@
-<div class="card" style="width: 70rem;">
+<div class="card mt-5">
   <div class="card-body">
     <h5 class="card-title"><strong>Recipe: </strong><%= @recipe.name %></h5>
   </div>
@@ -7,10 +7,12 @@
     <li class="list-group-item">  <strong>Cooking time: </strong><%= @recipe.cooking_time %></li>
     <li class="list-group-item d-flex"><strong>Public:&nbsp; </strong>
     
-      <%= form_for @recipe do |f| %>
-        <%= f.hidden_field :public, value: @recipe.public == false %>
-        Public: 
-        <%= f.submit @recipe.public.to_s%>
+      <%= form_for @recipe, html: { id: 'recipeForm' } do |f| %>
+        <div class="form-check form-switch">
+          <%= f.hidden_field :public, value: @recipe.public == false %>
+          <%= f.label :public, "Public:", class: "form-check-label" %>
+          <%= f.check_box :public, class: "form-check-input", id: "publicSwitch" %>
+        </div>
       <% end %>
     </li>
   </ul>
@@ -54,3 +56,15 @@
     </tbody>
   <% end %>
 </table>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const publicSwitch = document.getElementById('publicSwitch');
+    const form = document.querySelector('#recipeForm');
+
+    publicSwitch.addEventListener('change', function () {
+      form.submit();
+    });
+  });
+</script>
