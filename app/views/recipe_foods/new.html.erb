@@ -2,13 +2,15 @@
 <h1><%=@recipe.name%></h1>
 <p class="page-title">Add new ingredients</p>
 <div class="foods-container">
-  <table>
+  <table class="table table-striped table-bordered">
+  <thead class= "table-dark">
     <tr>
       <th>Food</th>
       <th>Measurement Unit</th>
       <th>Unit Price</th>
       <th>Actions</th>
     </tr>
+    </thead>
     <% @foods.each do |food| %>
       <tr>
         <td><%= food.name %></td>

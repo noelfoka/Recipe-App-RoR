@@ -1,15 +1,15 @@
-<br/>
+<br>
 <div class="card mb-3">
   <div class="row g-0">
-    <div class="col-md-4 p-3" style = "max-width: 300px">
-      <%= link_to  recipe_path(recipe) do %>
-        <h5><strong></strong><%= recipe.name %></h5>
+    <div class="col-md-4 p-3" style="max-width: 300px">
+      <%= link_to recipe_path(recipe), class: "text-decoration-none text-dark" do %>
+        <h5><strong><%= recipe.name %></strong></h5>
       <% end %>
-      <%= button_to "REMOVE", recipe_path(recipe.id), method: :delete, class:"btn btn-outline-danger"%>
+      <%= button_to "REMOVE", recipe_path(recipe.id), method: :delete, class: "btn btn-outline-danger mt-2" %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <p class="card-text"><strong>Description: </strong><%= recipe.description %></p>
+        <p class="card-text"><strong>Description:</strong> <%= recipe.description %></p>
       </div>
     </div>
   </div>
