@@ -1,11 +1,11 @@
 <div class="users-container">
 
-<div class="public-recipe-container">
-<h1>Public Recipes</h1>
+<div class="public-recipe-container pt-3">
+<h1 class='text-center mb-3'>Public Recipes</h1>
   <% @recipes.each do |recipe| %>
     <% unless recipe.public == false %>
 
-    <div class="public-recipe-card card">
+    <div class="public-recipe-card card mb-3">
     <div class="row p-3" style="width:100%;">
     <div class="col-md-6">
       <section>
