@@ -1,4 +1,4 @@
-<div class="card" style="width: 70rem;">
+<div class="card" style="width: 70rem; margin-top: 5rem;">
   <div class="card-body">
     <h5 class="card-title"><strong>Recipe: </strong><%= @recipe.name %></h5>
   </div>
@@ -17,7 +17,7 @@
   <div class="card-body">
     <p class="card-text"> <strong>Description: </strong><%= @recipe.description %></p>
   </div>
-  <div class="card-body">
+  <div class="card-body d-flex justify-content-between">
     <%= link_to "Generate Shopping List", general_shopping_list_path, class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
     <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
   </div>
@@ -40,7 +40,7 @@
           <td><%= recipe_food.quantity %></td>
           <td><%= recipe_food.food.price * recipe_food.quantity %></td>
           <td>
-            <%= link_to "Modify", edit_recipe_recipe_food_path(@recipe, recipe_food), method: :get, class: 'btn btn-outline-dark btn-sm float-start'%>
+            <%= link_to "Modify", edit_recipe_recipe_food_path(@recipe, recipe_food), method: :get, class: 'btn btn-outline-dark btn-sm float-start me-3'%>
             <%= button_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'btn btn-outline-danger btn-sm float-start'%>
           </td>
         </tr>
