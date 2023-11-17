@@ -17,7 +17,6 @@ RSpec.feature 'Recipe', type: :feature do
     Recipe.create(name: 'Recipe 2', preparation_time: 45, cooking_time: 90, description: 'Description 2',
                   public: true, user: User.first)
 
-    # Visit the recipes index page
     visit recipes_path
 
     # Verify that the recipes are displayed

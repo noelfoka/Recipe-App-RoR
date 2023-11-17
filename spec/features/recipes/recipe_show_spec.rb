@@ -26,7 +26,6 @@ RSpec.feature 'Recipe', type: :feature do
       )
     )
 
-    # Visit the recipe show page
     visit recipe_path(recipe)
 
     # Verify that the recipe name, description, and other elements are displayed correctly
