@@ -74,3 +74,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'devise', '~> 4.9'
 
 gem 'cancancan'
+
+gem 'factory_bot_rails'
