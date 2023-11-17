@@ -1,0 +1,70 @@
+<div class="card mt-5">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Recipe: </strong><%= @recipe.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Preparation time: </strong><%= @recipe.preparation_time %></li>
+    <li class="list-group-item">  <strong>Cooking time: </strong><%= @recipe.cooking_time %></li>
+    <li class="list-group-item d-flex"><strong>Public:&nbsp; </strong>
+    
+      <%= form_for @recipe, html: { id: 'recipeForm' } do |f| %>
+        <div class="form-check form-switch">
+          <%= f.hidden_field :public, value: @recipe.public == false %>
+          <%= f.label :public, "Public:", class: "form-check-label" %>
+          <%= f.check_box :public, class: "form-check-input", id: "publicSwitch" %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+  <div class="card-body">
+    <p class="card-text"> <strong>Description: </strong><%= @recipe.description %></p>
+  </div>
+  <div class="card-body d-flex justify-content-between">
+    <%= link_to "Generate Shopping List", general_shopping_list_path, class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
+    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-outline-dark btn-sm float-start mt-4 mb-4 ml-auto' %>
+  </div>
+</div>
+<hr>
+<table class="table table-striped ">
+  <% if @recipe_food.present? %>
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Value</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_food.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td>$<%= recipe_food.food.price * recipe_food.quantity %></td>
+          <td>
+            <%= link_to "Modify", edit_recipe_recipe_food_path(@recipe, recipe_food), method: :get, class: 'btn btn-outline-dark btn-sm float-start me-3'%>
+            <%= button_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'btn btn-outline-danger btn-sm float-start'%>
+          </td>
+        </tr>
+      <% end%>
+    </tbody>
+  <% else %>
+    <tbody>
+      <td>
+        <%=  'No foods found please create new food' %>
+      </td>
+    </tbody>
+  <% end %>
+</table>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const publicSwitch = document.getElementById('publicSwitch');
+    const form = document.querySelector('#recipeForm');
+
+    publicSwitch.addEventListener('change', function () {
+      form.submit();
+    });
+  });
+</script>
