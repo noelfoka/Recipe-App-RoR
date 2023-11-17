@@ -27,6 +27,7 @@ RSpec.feature 'RecipeFoods', type: :feature do
     click_button 'Create Recipe'
     sleep 1
   end
+
   scenario 'Create/Edit/Delete an Recipe Food/Ingredient' do
     click_link 'Apple dish'
     click_link 'Add Ingredient'
